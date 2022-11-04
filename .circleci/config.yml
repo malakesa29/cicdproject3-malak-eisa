@@ -220,7 +220,7 @@ jobs:
 
   run-migrations:
     docker:
-         <<: *defaults
+        - image:  amazon/aws-cli
     steps:
         - checkout
         - restore_cache:
