@@ -222,8 +222,8 @@ jobs:
     docker:
         - image:  amazon/aws-cli
     steps:
-        - checkout
-        - restore_cache:
+      - checkout
+      - restore_cache:
           keys: [backend-build]
       - run:
           name: Run migrations
