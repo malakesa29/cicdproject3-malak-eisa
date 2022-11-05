@@ -25,10 +25,10 @@ commands:
           command: |
             aws s3 rm s3://udapeople-<< parameters.workflow_id >> --recursive
             aws cloudformation delete-stack \
-              --region us-west-2 \
+              --region us-east-1 \
               --stack-name udapeople-prod-backendstack-<< parameters.workflow_id >>
             aws cloudformation delete-stack \
-              --region us-west-2 \
+              --region us-east-1 \
               --stack-name udapeople-prod-frontendstack-<< parameters.workflow_id >>
 
   revert-migrations:
@@ -161,7 +161,7 @@ jobs:
               --tags project=udapeople \
               --stack-name udapeople-prod-backendstack-${CIRCLE_WORKFLOW_ID} \
               --parameter-overrides ID=${CIRCLE_WORKFLOW_ID}
-            URLS=$(aws ec2 describe-instances --region us-west-2 --query "Reservations[*].Instances[*].PublicIpAddress"  --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID}"  --output text) 
+            URLS=$(aws ec2 describe-instances --region us-east-1 --query "Reservations[*].Instances[*].PublicIpAddress"  --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID}"  --output text) 
             echo "URLS=$URLS"
             echo "${CIRCLE_WORKFLOW_ID}"
       - run:
@@ -179,7 +179,7 @@ jobs:
           command: |
             #here
             aws ec2 describe-instances \
-                --region us-west-2 \
+                --region us-east-1 \
                 --query 'Reservations[*].Instances[*].PublicIpAddress' \
                 --filters "Name=tag:Name,Values=backend-$CIRCLE_WORKFLOW_ID" \
                 --output text >> ~/project/.circleci/ansible/inventory.txt
@@ -212,7 +212,7 @@ jobs:
           name: Configure server
           command: |
             aws ec2 describe-instances \
-                --region us-west-2 \
+                --region us-east-1 \
                 --query 'Reservations[*].Instances[*].PublicIpAddress' \
                 --filters "Name=tag:Name,Values=backend-$CIRCLE_WORKFLOW_ID" \
                 --output text >> ~/project/.circleci/ansible/inventory.txt
@@ -261,10 +261,10 @@ jobs:
             export TYPEORM_ENTITIES=./src/modules/**/*.entity.ts
             export TYPEORM_MIGRATIONS=./src/migrations/*.ts
             # Use these values for the local PG database from the Docker Compose2 file
-            export TYPEORM_HOST=udacityproject3.cnhuhj8yqdz0.us-west-2.rds.amazonaws.com
+            export TYPEORM_HOST=postgres.crjemwqtus8k.us-east-1.rds.amazonaws.com
             export TYPEORM_PORT=5432
             export TYPEORM_USERNAME=postgres
-            export TYPEORM_PASSWORD=hbMytYa7J55CWjmKPifw
+            export TYPEORM_PASSWORD=Autoauto12
             export TYPEORM_DATABASE=postgres
             npm audit fix --audit-level=critical --force
             npm install 
@@ -381,7 +381,7 @@ jobs:
             cd ~/project/.circleci/ansible
             export ANSIBLE_HOST_KEY_CHECKING=False
             aws ec2 describe-instances \
-                --region us-west-2 \
+                --region us-east-1 \
                 --query 'Reservations[*].Instances[*].PublicIpAddress' \
                 --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID}" \
                 --output text >> ~/project/.circleci/ansible/inventory.txt
@@ -404,7 +404,7 @@ jobs:
           name: Get Backend URL and performe smoke test.
           command: |
             export BACKEND_IP=$(aws ec2 describe-instances \
-             --region us-west-2 \
+             --region us-east-1 \
               --filters "Name=tag:Name, Values=backend-${CIRCLE_WORKFLOW_ID}" \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --output text)
@@ -413,7 +413,7 @@ jobs:
       - run:
           name: Frontend smoke test.
           command: |
-            URL="http://udapeople-${CIRCLE_WORKFLOW_ID}.s3-website-us-west-2.amazonaws.com/#/employees"
+            URL="http://udapeople-${CIRCLE_WORKFLOW_ID}.s3-website-us-east-1.amazonaws.com/#/employees"
             echo ${URL}
             if curl -s ${URL} | grep "Welcome"
             then
@@ -447,7 +447,7 @@ jobs:
             echo Old Workflow Id: "${OldWorkflowID}"
 
             aws cloudformation deploy \
-             --region us-west-2 \
+             --region us-east-1 \
             --template-file .circleci/files/cloudfront.yml \
             --stack-name=udapeople-cloudfront \
             --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID}" \
