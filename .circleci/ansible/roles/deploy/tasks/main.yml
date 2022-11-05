@@ -1,0 +1,43 @@
+- name: Creates directory
+  file:
+    path: /home/ubuntu/backend
+    state: directory
+
+- name: Unarchive a file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: /root/project/backend/app.tar.gz
+    dest: /home/ubuntu/backend/
+    
+- name: "deploy backend app to new location"
+  become: true
+  copy:
+    src:  /root/project/backend/.env
+    dest: /home/ubuntu/backend/
+
+
+- name: "install package dependencies"
+  become: true
+  command: npm install & npm audit fix --audit-level=critical --force
+  args:
+    chdir: /home/ubuntu/backend
+
+
+- name: "build package"
+  become: true
+  command: npm run build 
+  args:
+    chdir: /home/ubuntu/backend
+
+- name: "run migrations again"
+  become: true
+  command: npm run migrations
+  args:    
+    chdir: /home/ubuntu/backend
+   
+
+- name: Executing node
+  become: true
+  shell: |
+    cd /home/ubuntu/backend 
+    pm2 start npm --name backend -- start
+    pm2 ls
