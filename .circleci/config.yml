@@ -41,7 +41,7 @@ commands:
           name: Revert migrations
           when: on_fail
           command: |
-            SUCCESS=$(curl -H "token: 3bb2c12f-a15f-428a-af02-a801c348dff9" --request GET https://api.memstash.io/values/migration_<< parameters.workflow_id >>)
+            SUCCESS=$(curl -H "token: 7933fe63-4687-4fa1-8426-aa25aa1730ec" --request GET https://api.memstash.io/values/migration_<< parameters.workflow_id >>)
             #SUCCESS = 1
             if(( $SUCCESS==1 )); 
             then
@@ -164,7 +164,7 @@ jobs:
             URLS=$(aws ec2 describe-instances --region us-west-2 --query "Reservations[*].Instances[*].PublicIpAddress"  --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID}"  --output text) 
             echo "URLS=$URLS"
             echo "${CIRCLE_WORKFLOW_ID}"
-            curl -H "Content-Type: text/plain" -H "token: 3bb2c12f-a15f-428a-af02-a801c348dff9" --request PUT --data "$URLS" https://api.memstash.io/values/url_${CIRCLE_WORKFLOW_ID}
+            curl -H "Content-Type: text/plain" -H "token: 7933fe63-4687-4fa1-8426-aa25aa1730ec" --request PUT --data "$URLS" https://api.memstash.io/values/url_${CIRCLE_WORKFLOW_ID}
       - run:
           name: Ensure front-end infrastructure exist
           command: |
@@ -280,7 +280,7 @@ jobs:
             if [ `grep -c "has been executed successfully" output.txt` -gt 0 ] 
             then
             curl -H "Content-Type: text/plain" \
-              -H "token: 3bb2c12f-a15f-428a-af02-a801c348dff9" \
+              -H "token: 7933fe63-4687-4fa1-8426-aa25aa1730ec" \
               --request PUT --data "1" \
               https://api.memstash.io/values/migration_${CIRCLE_WORKFLOW_ID}
             fi
