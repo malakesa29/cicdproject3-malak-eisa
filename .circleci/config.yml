@@ -175,7 +175,7 @@ jobs:
               --parameter-overrides ID=${CIRCLE_WORKFLOW_ID}
               ARN=$(aws s3 ls | grep udapeople)
               echo "ARN=$ARN"
-              curl -H "Content-Type: text/plain" -H "token: 3bb2c12f-a15f-428a-af02-a801c348dff9" --request PUT --data "$ARN" https://api.memstash.io/values/arn_${CIRCLE_WORKFLOW_ID}
+              curl -H "Content-Type: text/plain" -H "token: 7933fe63-4687-4fa1-8426-aa25aa1730ec" --request PUT --data "1" https://api.memstash.io/values/migration_${CIRCLE_WORKFLOW_ID:0:7}
       - run:
           name: Add back-end ip to ansible inventory
           command: |
