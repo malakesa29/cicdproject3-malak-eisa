@@ -374,8 +374,7 @@ jobs:
             ansible-playbook -i inventory.txt deploy-backend.yml 
 
   smoke-test:
-    docker:
-       - image: circleci/node:13.8.0
+    <<: *defaults2
     steps:
        - checkout
        - restore_cache:
