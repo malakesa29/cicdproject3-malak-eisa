@@ -314,7 +314,7 @@ jobs:
     docker:
       <<: *defaults2
     steps:
-       - checkout
+      - checkout
       - add_ssh_keys:
           fingerprints: ["ee:7e:7c:e7:aa:70:a3:54:6a:32:0a:c8:97:f9:cc:26:09:88:ff:3d"]
       - attach_workspace:
