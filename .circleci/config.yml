@@ -2,7 +2,7 @@ version: 2.1
 
 defaults: &defaults
   docker:
-      - image: circleci/node:16.6.2-alpine
+      - image: circleci/node:14.21.0-alpine3.16
 
 defaults1: &defaults1
   docker:
@@ -67,8 +67,7 @@ jobs:
           key: frontend-build
 
   build-backend:
-    docker:
-      - image: circleci/node:16.6.2-alpine
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -84,8 +83,7 @@ jobs:
           key: backend-build
 
   test-frontend:
-    docker:
-      - image: circleci/node:16.6.2-alpine
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -97,8 +95,7 @@ jobs:
             npm install
                 
   test-backend:
-    docker:
-      - image: circleci/node:16.6.2-alpine
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -114,8 +111,7 @@ jobs:
           path: /tmp/reports/junit/
             
   scan-frontend:
-    docker:
-      - image: circleci/node:16.6.2-alpine
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -132,8 +128,7 @@ jobs:
             npm audit fix --audit-level=critical --force
 
   scan-backend:
-    docker:
-      - image: circleci/node:16.6.2-alpine
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
