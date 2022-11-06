@@ -339,10 +339,10 @@ jobs:
             echo TYPEORM_MIGRATIONS_DIR=./migrations >> "backend/.env"
             echo TYPEORM_ENTITIES=./src/modules/**/*.entity.ts >> "backend/.env"
             echo TYPEORM_MIGRATIONS=./migrations/*.ts >> "backend/.env"
-            echo TYPEORM_HOST=$TYPEORM_HOST >> "backend/.env"
+            echo TYPEORM_HOST=postgres.crjemwqtus8k.us-east-1.rds.amazonaws.com >> "backend/.env"
             echo TYPEORM_PORT=5432 >> "backend/.env"
             echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> "backend/.env"
-            echo TYPEORM_PASSWORD=hbMytYa7J55CWjmKPifw >> "backend/.env"
+            echo TYPEORM_PASSWORD=Autoauto12 >> "backend/.env"
             echo TYPEORM_DATABASE=postgres >> "backend/.env"
             cd backend
             npm i
@@ -353,10 +353,10 @@ jobs:
             echo TYPEORM_MIGRATIONS_DIR=./migrations >> ~/project/backend/dist/.env
             echo TYPEORM_ENTITIES=./src/modules/**/*.entity.ts >> ~/project/backend/dist/.env
             echo TYPEORM_MIGRATIONS=./migrations/*.ts >> ~/project/backend/dist/.env
-            echo TYPEORM_HOST=$TYPEORM_HOST >> ~/project/backend/dist/.env
+            echo TYPEORM_HOST=postgres.crjemwqtus8k.us-east-1.rds.amazonaws.com >> ~/project/backend/dist/.env
             echo TYPEORM_PORT=5432 >> ~/project/backend/dist/.env
             echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> ~/project/backend/dist/.env
-            echo TYPEORM_PASSWORD=hbMytYa7J55CWjmKPifw >> ~/project/backend/dist/.env
+            echo TYPEORM_PASSWORD=Autoauto12 >> ~/project/backend/dist/.env
             echo TYPEORM_DATABASE=postgres >> ~/project/backend/dist/.env
             cat dist/.env
             mkdir -p /root/project/.circleci/ansible/roles/deploy/files/
