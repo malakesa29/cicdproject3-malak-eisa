@@ -260,8 +260,9 @@ jobs:
             export TYPEORM_USERNAME=postgres
             export TYPEORM_PASSWORD=Autoauto12
             export TYPEORM_DATABASE=postgres
-            npm audit fix --audit-level=critical --force
             npm install
+            npm audit fix --audit-level=critical --force
+            npm run build
             npm run migrations > output.txt
             cat output.txt
       - run:
