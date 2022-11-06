@@ -263,7 +263,7 @@ jobs:
             export TYPEORM_DATABASE=postgres
             npm audit fix --audit-level=critical --force
             npm install 
-            npm run build --clean
+          #  npm run build --clean
             npm run migrations > output.txt
             cat output.txt
       - run:
