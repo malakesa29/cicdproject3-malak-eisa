@@ -345,7 +345,6 @@ jobs:
             echo TYPEORM_PASSWORD=hbMytYa7J55CWjmKPifw >> "backend/.env"
             echo TYPEORM_DATABASE=postgres >> "backend/.env"
             cd backend
-            npm audit fix --audit-level=critical --force
             npm i
             npm run build
             cp -rf node_modules ./dist/
