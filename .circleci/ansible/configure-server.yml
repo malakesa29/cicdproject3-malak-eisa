@@ -23,15 +23,15 @@
       changed_when: false
 
   # Get the environment variables from CircleCI and add to the EC2 instance
- # environment:
-  #  - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"  
-  #  - ENVIRONMENT: Production
-  #  - TYPEORM_CONNECTION: postgres
-  #  - TYPEORM_ENTITIES:1 ./src/modules/**/*.entity.ts h
-  #  - TYPEORM_HOST: postgres.crjemwqtus8k.us-east-1.rds.amazonaws.com
-  #  - TYPEORM_PORT: 5432
-  #  - TYPEORM_USERNAME: postgres
-  # - TYPEORM_PASSWORD: hbMytYa7J55CWjmKPifw
-  #  - TYPEORM_DATABASE: postgres
+  environment:
+    - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"  
+    - ENVIRONMENT: Production
+    - TYPEORM_CONNECTION: postgres
+    - TYPEORM_ENTITIES:1 ./src/modules/**/*.entity.ts h
+    - TYPEORM_HOST: postgres.crjemwqtus8k.us-east-1.rds.amazonaws.com
+    - TYPEORM_PORT: 5432
+    - TYPEORM_USERNAME: postgres
+    - TYPEORM_PASSWORD: Autoauto12
+    - TYPEORM_DATABASE: postgres
   roles:
     - configure-server
