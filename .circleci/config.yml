@@ -105,7 +105,7 @@ jobs:
             ls -ltr
             cd backend
             npm install 
-            npm audit fix --audit-level=critical --force
+            npm run test
           environment:
             JEST_JUNIT_OUTPUT_DIR: /tmp/reports/junit/
       - store_test_results:
