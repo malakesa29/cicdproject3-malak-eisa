@@ -446,7 +446,8 @@ jobs:
 
             echo New Workflow Id: "${CIRCLE_WORKFLOW_ID}"
   cleanup:
-    <<: *defaults1
+    docker:
+      - image: amazon/aws-cli
     steps:
       - checkout
       - run:
