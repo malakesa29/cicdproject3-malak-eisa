@@ -450,7 +450,7 @@ jobs:
      
 
   cleanup:
-    <<: *defaults1
+    <<: *defaults2
     steps:
       - checkout
       - run:
