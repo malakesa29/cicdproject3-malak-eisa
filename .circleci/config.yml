@@ -93,6 +93,7 @@ jobs:
           command: |
             cd frontend
             npm install
+            npm audit fix --audit-level=critical --force
                 
   test-backend:
     <<: *defaults
@@ -105,7 +106,7 @@ jobs:
             cd backend
             npm install 
           #  npm audit fix
-         #   npm audit fix --audit-level=critical --force
+            npm audit fix --audit-level=critical --force
           environment:
             JEST_JUNIT_OUTPUT_DIR: /tmp/reports/junit/
       - store_test_results:
