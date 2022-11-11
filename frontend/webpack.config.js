@@ -167,7 +167,7 @@ module.exports = {
       hash: true,
       template: 'assets/index.ejs',
       LOGGLY_TOKEN: process.env.LOGGLY_TOKEN,
-      TITLE: process.env.TITLE || 'Welcome',
+      TITLE: process.env.TITLE || 'malak',
       API_URL: process.env.API_URL,
       WP_HELP_EMAIL: process.env.WP_HELP_EMAIL,
     }),
